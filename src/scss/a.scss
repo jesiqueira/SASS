@@ -1,0 +1,32 @@
+@use "b.scss" as v;
+// import "b.scss";
+@use "_recursos" with (
+    $black: #999,
+    $bordaPadrao: 1rem
+    );
+
+$marg: 0;
+$pad: 0;
+$amarelo: yellow;
+$vermelho: red;
+
+
+body{
+    margin: $marg;
+    padding: $pad;
+    background-color: $amarelo;
+}
+
+p{
+    margin: $marg;
+    // padding: $pad;
+    padding: v.$pa1;
+}
+
+ul {
+    li{
+        padding: $pad;
+        margin: $marg;
+        color: $vermelho;
+    }
+}

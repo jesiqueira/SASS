@@ -1,0 +1,25 @@
+/*BODY*/
+body {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+/*HEaDER*/
+header {
+  padding: 1%;
+}
+
+.log {
+  background-image: url(/src/img/nomedaIMagem);
+}
+
+/*NAVBAR*/
+nav.navbar {
+  text-align: center;
+}
+
+.navbar-item {
+  font: bold 1rem "Arial Black";
+}
+
+/*# sourceMappingURL=page.css.map */

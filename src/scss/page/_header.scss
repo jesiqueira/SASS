@@ -1,0 +1,13 @@
+
+$padHead: 1%;
+$bgLogo: url(/src/img/nomedaIMagem);
+
+
+/*HEaDER*/
+header{
+    padding: $padHead;
+}
+
+.log{
+    background-image: $bgLogo;
+}
