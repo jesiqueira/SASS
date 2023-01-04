@@ -1,10 +1,145 @@
+@use "sass:map";
+
 $black: #000 !default;
 $bordaPadrao: 12px !default;
 $sombraPadrao: 1rem 0.57rem 1rem rgba($black, 0.3) !default;
 
 
-$temaEscuro: true !default;
+$temaAlerta:(
+    "sucesso": #7cdb3c,
+    "info": #6161e9,
+    "danger": #ca942f,
+);
 
+$temaEscuro: true !default;
+$corPrimaria: #d3cfcf;
+$corBordaPrimaria: #6a6969;
+
+@if(temaEscuro){
+    $corPrimaria:darken($corPrimaria, 60%);
+    $corBordaPrimaria: lighten($corBordaPrimaria, 30%);
+}
+
+@mixin lista-reset{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+@mixin lista-horizontal{
+    @include lista-reset;
+     
+    li{
+        display: inline-block;
+        margin-left: 0;
+        margin-right: 1rem;
+    }
+}
+
+@mixin icone-position($img, $top-bottom, $left-right){
+    .icone-#{$img}{
+        background-image: url(/src/img/#{$img}.png);
+        position: absolute;
+        #{$top-bottom}: 0;
+        #{$left-right}: 0;
+    }
+}
+@include icone-position("facebook",top, right);
+
+
+@mixin anima($dur, $count){
+    $nome:anima-#{unique-id()};
+
+    @keyframes #{$nome} {
+        @content
+    }
+
+    animation-name: $nome;
+    animation-duration: $dur;
+    animation-iteration-count: $count;
+}
+
+.boxAnima{
+    @include anima(2s, infinite){
+        0%{
+            transform: scale(1);
+        }
+        100%{
+            transform: scale(1.5)
+        }
+    }
+}
+
+.boxAnima, .alert{
+    border: solid #eee 1px;
+    p, a{
+        background: {
+            color: khaki;
+        }
+    }
+}
+
+h2 + {
+    span{
+        font: {
+            weight:bold;
+            size: 2rem
+        }
+    }
+}
+
+div ~ {
+    ul{
+        list-style: none;
+    }
+}
+
+.destaque{
+  background-color: #147014;
+  text-align: center;
+  &--urgente {
+    border: 4px solid orange;
+  }
+} 
+
+.alert{
+    color: $corPrimaria;
+    border-color: $corBordaPrimaria;
+    & p{
+        font: {
+            weight:bold;
+        };
+    }
+  }
+
+//Function
+$largura: 50px, 30px, 120px;
+@function soma($numeros...){
+    $n: 0;
+    @each $num in $numeros{
+        $n: $n + $num;
+    }
+    @return $n;
+}
+
+.box-w{
+    width: soma(50px, 30px, 120px);
+    min-width: max($largura...);
+}
+
+nav ul {
+    @include lista-horizontal;
+}
+/*Alerta*/
+.alert{
+    color: $corPrimaria;
+    border-color: $corBordaPrimaria;
+}
+
+/*BUTTON*/
+.button{
+    background-color: map-get($temaAlerta, "info");
+}
 
 /*BOX*/
 .box{
